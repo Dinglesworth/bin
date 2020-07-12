@@ -1,0 +1,10 @@
+#!/bin/bash
+
+DEVICE_NAME=$1
+
+if [ "$DEVICE_NAME" == "" ]; then
+    echo -e "\033[1;031mNO DEVICE NAME WAS ENTERED!"
+else
+    bluetoothctl devices | awk 'BEGIN {IGNORECASE = 1} $3$4$5$6$7$8$9$10$11$12  ~ "'$DEVICE_NAME'" {print "\n\033[1;32m[MAC ADDRESS]: \033[1;34m" $2 "\n\033[1;032m[DEVICE NAME]: \033[0m" $3 " " $4 " " $5 " " $6 " " $7 " " $8 " " $9 " " $10 " " $11 " " $12 " " $13 " " $14 " " $15 " " $16 " " $17 " " $18 " " $19 " " $20}'
+    echo -e ""
+fi

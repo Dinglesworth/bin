@@ -1,0 +1,11 @@
+#!/bin/bash
+
+MENU="$(rofi -sep "|" -dmenu -i -p 'LibreOffice' -width 12 -hide-scrollbar -line-padding 4 -padding 20 -lines 3 -columns 2  <<< "Base| Calc| Draw| Math| Writer| Impress")"
+case "$MENU" in
+    *Base) libreoffice --base;;
+    *Calc) libreoffice --calc;;
+    *Draw) libreoffice --draw;;
+    *Math) libreoffice --math;;
+    *Writer) libreoffice --writer;;
+    *Impress) libreoffice --impress;;
+esac

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+MENU="$(rofi -sep "|" -dmenu -i -p "File Manager" -width 12 -hide-scrollbar -line-padding 4 -padding 20 -lines 3 <<< "Thunar|PCManFM|VIfm")"
+	case "$MENU" in
+        *"Thunar") thunar;;
+		*"PCManFM") pcmanfm;;
+		*"VIfm") st -e vifm;;
+	esac
+

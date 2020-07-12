@@ -1,0 +1,14 @@
+#!/bin/bash
+
+MAC_ADDRESS=$1
+bluetoothctl trust $MAC_ADDRESS > /dev/null
+TRUST_STATUS=$(bluetoothctl info $MAC_ADDRESS | awk '$1 == "Trusted:" {print $2}')
+DEVICE_NAME=$(bluetoothctl info $MAC_ADDRESS | awk '$1 == "Name:" {print $2$3$4$5$6$7$8}')
+
+if [ $TRUST_STATUS == "yes" ]; then
+    echo -e "\n\033[1;32m[DEVICE]: \033[1;34m$DEVICE_NAME"
+    echo -e "\033[1;32mSuccesfully Trusted\n"
+else
+    echo -e "\n\033[1;32m[DEVICE]: \033[1;34m$DEVICE_NAME"
+    echo -e "\033[1;31mFailed to Trust\n"
+fi

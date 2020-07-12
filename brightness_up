@@ -1,0 +1,5 @@
+#!/bin/bash
+
+brightness=$(brightnessctl get)
+brightness_perc=$(expr $brightness / 750)
+echo -e "$brightness_perc \b0%"

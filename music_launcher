@@ -1,0 +1,10 @@
+#!/bin/bash
+
+MENU="$(rofi -sep "|" -dmenu -i -p 'Player' -width 12 -hide-scrollbar -line-padding 4 -padding 20 -lines 4 <<< "Spotify|Spotui|DeaDBeeF|VLC")"
+
+case "$MENU" in
+    *Spotify) spotify;;
+    *Spotui) st -e /home/$USER/.bin/spotui;;
+    *DeaDBeeF) deadbeef;;
+    *VLC) vlc;;
+esac

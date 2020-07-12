@@ -1,0 +1,4 @@
+#!/bin/bash
+spotifyd --no-daemon --username 'dinglesworth' --use-keyring --backend pulseaudio --bitrate 320 > /dev/null &
+spt
+killall spotifyd

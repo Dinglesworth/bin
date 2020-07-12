@@ -1,0 +1,18 @@
+#!/bin/bash
+
+MAC_ADDRESS=$1
+
+echo ""
+echo -e "\033[1;43m\033[1;30m[NAMING]\n\033[1;49m"
+bluetoothctl info $MAC_ADDRESS | awk '$1 == "Device" {print "\033[1;032m[MAC ADDRESS]:    \033[1;039m"$2}'
+bluetoothctl info $MAC_ADDRESS | awk '$1 == "Name:" {print "\033[1;032m[NAME]:           \033[1;034m"$2" "$3" "$4" "$5" "$6" "$7" "$8}'
+bluetoothctl info $MAC_ADDRESS | awk '$1 == "Alias:" {print "\033[1;032m[ALIAS]:          \033[1;034m"$2" "$3" "$4" "$5" "$6" "$7" "$8}'
+bluetoothctl info $MAC_ADDRESS | awk '$1 == "Class:" {print "\033[1;032m[CLASS]:          \033[1;034m"$2}'
+echo -e "\n\033[1;43m\033[1;30m[ATTRIBUTES]\n\033[1;49m"
+bluetoothctl info $MAC_ADDRESS | awk '$1 == "Icon" {print "\033[1;032m[ICON]: \033[1;034m"$2}'
+bluetoothctl info $MAC_ADDRESS | awk '$1 == "Paired:" {print "\033[1;032m[PAIRED]:         \033[1;039m"$2}'
+bluetoothctl info $MAC_ADDRESS | awk '$1 == "Trusted:" {print "\033[1;032m[TRUSTED]:        \033[1;039m"$2}'
+bluetoothctl info $MAC_ADDRESS | awk '$1 == "Blocked:" {print "\033[1;032m[BLOCKED]:        \033[1;039m"$2}'
+bluetoothctl info $MAC_ADDRESS | awk '$1 == "Connected:" {print "\033[1;032m[CONNECTED]:      \033[1;039m"$2}'
+bluetoothctl info $MAC_ADDRESS | awk '$1 == "LegacyPairing:" {print "\033[1;032m[LEGACY PAIRING]: \033[1;039m"$2}'
+echo ""

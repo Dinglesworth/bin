@@ -1,0 +1,9 @@
+#!/bin/bash
+
+contents="$(ls ~/.bin | rofi -dmenu -width 30 -i -p "Bin")"
+
+for i in $(ls ~/.bin); do
+    case $contents in
+        $i) ~/.bin/$i;;
+    esac
+done

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+MENU="$(rofi -sep "|" -dmenu -i -p 'Browser' -width 12 -hide-scrollbar -line-padding 4 -padding 20 -lines 3 <<< "Firefox|Qutebrowser|Firefox (Private)")"
+case "$MENU" in
+    *Firefox) firefox;;
+	*Qutebrowser) qutebrowser;;
+    *"Firefox (Private)") firefox --private-window;;
+esac

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+POWER_STATUS=$(bluetoothctl show | awk '$1 ~ "Powered" {print $2}')
+
+if [ $POWER_STATUS == "no" ]; then
+    bluetoothctl power on > /dev/null
+    bluetoothctl agent on > /dev/null
+    bluetoothctl default-agent > /dev/null
+    echo -e "\n\033[1;32m[BLUETOOTH POWER]: \033[1;34mON\n"
+else
+    bluetoothctl power off > /dev/null
+    echo -e "\n\033[1;32m[BLUETOOTH POWER]: \033[1;33mOFF\n"
+fi

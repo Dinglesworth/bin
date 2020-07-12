@@ -1,0 +1,14 @@
+#!/bin/bash
+
+for SINK in $(pacmd list-sinks | grep 'index:' | cut -b12-)
+do
+	pactl set-sink-mute $SINK toggle
+done
+
+if [ $(pamixer --get-mute) == true ]; then
+    dunstify -u normal "Muted" -r "169550" -I /usr/share/icons/Papirus-Dark/16x16/actions/audio-volume-muted.svg
+else
+    paplay /usr/share/sounds/freedesktop/stereo/bell.oga
+    dunstify -u normal "$(pamixer --get-volume)%" -r "169550" -I /usr/share/icons/Papirus-Dark/16x16/actions/audio-volume-high.svg
+
+fi

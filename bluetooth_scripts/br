@@ -1,0 +1,17 @@
+#!/bin/bash
+
+MAC_ADDRESS=$1
+DEVICE_NAME=$(bluetoothctl info $MAC_ADDRESS | awk '$1 == "Name:" {print $2" "$3" "$4" "$5" "$6" "$7" "$8}')
+LINE_COUNT=$(bluetoothctl remove $MAC_ADDRESS | wc -l)
+DEVICE_REMOVED=$(bluetoothctl paired-devices | awk '$1 == "'$MAC_ADDRESS'" {print $3" "$4" "$5" "$6" "$7" "$8}')
+
+if [ "$LINE_COUNT" == "0" ] || [ "$MAC_ADDRESS" == "" ]; then
+    echo -e "\033[1;31mNO DEVICE ENTERED"
+    exit
+fi
+
+if [ "$LINE_COUNT" == "2" ] && [ "$DEVICE_REMOVED" == "" ]; then
+    echo -e "\n\033[1;32m[DEVICE]: \033[1;39m$DEVICE_NAME\033[1;31mREMOVED\n"
+else
+    echo -e "\n\033[1;31mDEVICE NOT IN LIST\n"
+fi

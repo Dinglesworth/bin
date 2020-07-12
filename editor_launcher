@@ -1,0 +1,8 @@
+#!/bin/bash
+
+MENU="$(rofi -sep "|" -dmenu -i -p 'Editor' -width 12 -hide-scrollbar -line-padding 4 -padding 20 -lines 3 <<< "NVim|Emacs|Codium")"
+case "$MENU" in
+    *NVim) st -e nvim;;
+    *Emacs) emacs;;
+    *Codium) codium;;
+esac

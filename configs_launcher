@@ -1,0 +1,14 @@
+#!/bin/bash
+MENU="$(rofi -sep "|" -dmenu -i -p "Configs" -width 12 -hide-scrollbar -line-padding 4 -padding 20 -lines 5 <<< "BSPWM|SXHKD|EMACS|PICOM|POLYBAR|DUNST|ROFI|NVIM|VIFM|ST|")"
+case "$MENU" in
+	*BSPWM) st -e nvim /home/dingle/.config/bspwm/bspwmrc;;
+	*SXHKD) st -e nvim /home/dingle/.config/sxhkd/sxhkdrc;;
+	*EMACS) st -e nvim /home/dingle/.doom.d;;
+	*PICOM) st -e nvim /home/dingle/.config/picom.conf;;
+	*POLYBAR) st -e nvim /home/dingle/.config/polybar;;
+	*DUNST) st -e nvim /home/dingle/.config/dunst/dunstrc;;
+	*ROFI) st -e nvim /home/dingle/.config/rofi/config.rasi;;
+	*NVIM) st -e nvim /home/dingle/.config/nvim/init.vim;;
+	*VIFM) st -e nvim /home/dingle/.config/vifm/vifmrc;;
+    *ST) st -e nvim /home/dingle/Documents/St Config/V10.6/st-0.8.4/config.h;;
+esac

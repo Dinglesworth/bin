@@ -1,0 +1,18 @@
+#!/bin/bash
+
+MAC_ADDRESS=$1
+if [ "$MAC_ADDRESS" == "" ]; then
+    echo -e "\n\033[1;33mNO MAC ADDRESS WAS ENTERED\n"
+    exit
+fi
+bluetoothctl connect $MAC_ADDRESS > /dev/null
+CONNECT_STATUS=$(bluetoothctl info $MAC_ADDRESS | awk '$1 == "Connected:" {print $2}')
+DEVICE_NAME=$(bluetoothctl info $MAC_ADDRESS | awk '$1 == "Name:" {print $2" "$3" "$4" "$5" "$6" "$7" "$8}')
+
+if [ "$CONNECT_STATUS" == "yes" ]; then
+    echo -e "\n\033[1;32m[DEVICE]: \033[1;34m$DEVICE_NAME"
+    echo -e "\033[1;32mSuccesfully Connected\n"
+else
+    echo -e "\n\033[1;32m[DEVICE]: \033[1;34m$DEVICE_NAME"
+    echo -e "\033[1;31mFailed to Connect\n"
+fi

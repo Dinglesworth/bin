@@ -1,0 +1,21 @@
+#!/bin/bash
+
+cur_vol=$(pamixer --get-volume)
+vol_changed=0
+
+for SINK in $(pacmd list-sinks | grep 'index:' | cut -b12-)
+do
+	if [ $cur_vol -gt 95 ]; then
+		break
+	else
+		pactl set-sink-volume $SINK +5%
+        vol_changed=1
+	fi
+done
+
+if [ $vol_changed == 1 ]; then
+    dunstify -u normal "$cur_vol%" -r "169550" -I /usr/share/icons/Papirus-Dark/16x16/actions/audio-volume-high.svg
+    paplay /usr/share/sounds/freedesktop/stereo/bell.oga
+else
+    notify-send -u normal "100%"
+fi

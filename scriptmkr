@@ -1,0 +1,69 @@
+#!/usr/bin/python
+#                   _       _   __  __       _
+#     ___  ___ _ __(_)_ __ | |_|  \/  | __ _| | _____ _ __
+#    / __|/ __| '__| | '_ \| __| |\/| |/ _` | |/ / _ \ '__|
+#    \__ \ (__| |  | | |_) | |_| |  | | (_| |   <  __/ |
+#    |___/\___|_|  |_| .__/ \__|_|  |_|\__,_|_|\_\___|_|
+#                    |_|
+#
+#
+#   By dingle
+
+import sys
+import subprocess
+from colorama import Fore
+
+userCMD = subprocess.check_output(['id','-u','-n'])
+userList = []
+
+for i in range(0,len(userCMD)):
+    if userCMD[i] == 10:
+        break
+    else:
+        if userCMD[i] == "'" or userCMD[i] == "b":
+            None
+        else:
+            userList += chr(userCMD[i])
+    i+=1
+
+USER=''.join(userList)
+
+for i in range(0,len(sys.argv)):
+    i+=1
+
+if i <= 1:
+    print(Fore.RED + "No filename entered\nExiting...")
+    quit()
+else:
+    if sys.argv[1] is None:
+       print(Fore.RED + "No valid value for filename")
+
+checkCmd = subprocess.Popen(["ls /home/"+USER+"/.bin/"+sys.argv[1]+""], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+output,error = checkCmd.communicate()
+
+counting = False
+count = 0
+
+for i in range(0,len(output)):
+    if output[i] != "'":
+        counting = False
+    if output[i] == "'" and counting == True:
+        break
+    else:
+        counting=True
+        count+=1
+    i+=1
+
+if count != 0:
+    print(Fore.YELLOW + "The file entered already exists!\nExiting...")
+    quit()
+
+else:
+    None
+
+subprocess.call(["touch", "/home/"+USER+"/.bin/"+sys.argv[1]+""])
+subprocess.call(["chmod","+x","/home/"+USER+"/.bin/"+sys.argv[1]+""])
+script = open("/home/"+USER+"/.bin/"+sys.argv[1]+"","w")
+script.write("#!/bin/bash")
+script.close()
+print(Fore.GREEN+'All Done!')
