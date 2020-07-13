@@ -17,5 +17,5 @@ if [ $vol_changed == 1 ]; then
     dunstify -u normal "$cur_vol%" -r "169550" -I /usr/share/icons/Papirus-Dark/16x16/actions/audio-volume-high.svg
     paplay /usr/share/sounds/freedesktop/stereo/bell.oga
 else
-    notify-send -u normal "100%"
+    dunstify -u normal "$cur_vol%" -r "169550" -I /usr/share/icons/Papirus-Dark/16x16/actions/audio-volume-high.svg
 fi
