@@ -2,5 +2,5 @@
 
 brightnessctl set 10%-
 brightness=$(brightnessctl get)
-brightness_perc=$(expr ($brightness / 750)*10)
-dunstify -u normal "$brightness_perc%" -r "169550" -I /usr/share/icons/Papirus-Dark/16x16/actions/audio-volume-medium.svg
+brightness_perc=$(expr $brightness / 75)
+dunstify -u normal "$brightness_perc%" -r "169550" -I /usr/share/icons/Papirus-Dark/16x16/panel/gpm-brightness-lcd-disabled.svg
