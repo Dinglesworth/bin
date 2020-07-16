@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [ -z $(pidof plank) ]; then
+    plank
+else
+   killall plank 
+fi
