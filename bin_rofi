@@ -1,6 +1,6 @@
 #!/bin/bash
 
-contents="$(ls ~/.bin | rofi -columns 1 -dmenu -width 25 -i -p "Bin")"
+contents="$(ls ~/.bin | rofi -lines 3 -columns 1 -dmenu -yoffset -443 -width 15 -i -p "Bin")"
 
 for i in $(ls ~/.bin); do
     case $contents in
