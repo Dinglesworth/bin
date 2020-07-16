@@ -1,17 +1,16 @@
 #!/bin/bash
 
-cur_vol=$(pamixer --get-volume)
 vol_changed=0
 
 for SINK in $(pacmd list-sinks | grep 'index:' | cut -b12-)
 do
-	pactl set-sink-volume $SINK -5%
     vol_changed=1
+	pactl set-sink-volume $SINK -5%
 done
 
 if [ $vol_changed == 1 ]; then
-    dunstify -u normal "$cur_vol%" -r "169550" -I /usr/share/icons/Papirus-Dark/16x16/actions/audio-volume-medium.svg
+    dunstify -u normal "$(pamixer --get-volume)%" -r "169550" -I /usr/share/icons/Papirus-Dark/16x16/actions/audio-volume-medium.svg
     paplay /usr/share/sounds/freedesktop/stereo/bell.oga
 else
-    dunstify -u normal "$cur_vol%" -r "169550" -I /usr/share/icons/Papirus-Dark/16x16/actions/audio-volume-low.svg
+    dunstify -u normal "$(pamixer --get-volume)%" -r "169550" -I /usr/share/icons/Papirus-Dark/16x16/actions/audio-volume-low.svg
 fi
