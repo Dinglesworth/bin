@@ -1,3 +1,0 @@
-#!/bin/bash
-
-rofi -show run -lines 3 -columns 1 -width 15 -yoffset -443 -font "JetBrainsMono Nerd Font 9"

@@ -1,9 +1,0 @@
-#!/bin/bash
-
-contents="$(ls ~/.bin | rofi -lines 3 -columns 1 -dmenu -yoffset -443 -width 15 -i -p "Bin")"
-
-for i in $(ls ~/.bin); do
-    case $contents in
-        $i) ~/.bin/$i;;
-    esac
-done
