@@ -2,6 +2,7 @@
 
 if [ -z $(pidof plank) ]; then
     plank
+    xdotool search --class Plank windowraise
 else
    killall plank 
 fi
