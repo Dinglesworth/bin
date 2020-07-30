@@ -2,7 +2,7 @@
 
 if [ $(bspc config window_gap) == 0 ]; then
     bspc config window_gap 10
-elif [ $(bspc config window_gap) == 15 ]; then 
+elif [ $(bspc config window_gap) == 10 ]; then 
     bspc config window_gap 30
 else
     bspc config window_gap 0
