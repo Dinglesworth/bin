@@ -1,0 +1,3 @@
+#!/bin/bash
+
+xmenu | /home/dingle/.config/polybar/scripts/power.sh

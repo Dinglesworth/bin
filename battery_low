@@ -1,0 +1,11 @@
+#!/bin/bash
+
+BAT_PER=$(acpi | cut -d ' ' -f 4 | tr -d ',' | tr -d '%')
+
+if [ $BAT_PER <= 20 ]; then
+    dunstify -u urgent "WARNING!\n Battery percentage is $BAT_PER%\n" -I /usr/share/icons/Papirus/16x16/panel/battery-low.svg
+    paplay /usr/share/sounds/freedesktop/stereo/bell.oga
+    killall battery_low
+else
+   exit 
+fi
