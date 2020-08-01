@@ -1,8 +1,7 @@
 #!/bin/bash
 
 if [ -z $(pidof plank) ]; then
-    plank
-    xdotool search --class Plank windowraise
+    plank && xdotool search --class Plank windowraise
 else
    killall plank 
 fi
