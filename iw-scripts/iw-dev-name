@@ -1,0 +1,5 @@
+#!/bin/bash
+
+ID=$(iw dev)
+
+echo $ID
