@@ -15,7 +15,6 @@ done
 
 if [ $vol_changed == 1 ]; then
     dunstify -u normal "$(pamixer --get-volume)%" -r "169550" -I /usr/share/icons/Papirus-Dark/16x16/actions/audio-volume-high.svg
-    paplay /usr/share/sounds/freedesktop/stereo/bell.oga
 else
     dunstify -u normal "$(pamixer --get-volume)%" -r "169550" -I /usr/share/icons/Papirus-Dark/16x16/actions/audio-volume-high.svg
 fi
